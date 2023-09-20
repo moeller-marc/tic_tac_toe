@@ -8,6 +8,7 @@
 void print_board(int *board);
 void set_board(int *board);
 int is_terminal(int *board);
+void get_all_emty_cells(int *board, int *emty_cells);
 
 int main(int argc, char const *argv[])
 {
@@ -92,4 +93,19 @@ int is_terminal(int *board)
         }
     }
     return 0;
+}
+
+void get_all_emty_cells(int *board, int *emty_cells){
+    for (int i = 0; i < SIZE; i++)
+    {
+        if (board[i] == 0)
+        {
+            emty_cells[i] = 1;
+        }
+        else
+        {
+            emty_cells[i] = 0;
+        }
+    }
+    
 }
