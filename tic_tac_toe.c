@@ -19,14 +19,21 @@ int main(int argc, char const *argv[])
     board[4] = 2;
     board[7] = 2;
 
-    if (is_terminal(board) == 1)
-        printf("1 won\n");
-    else if (is_terminal(board) == 2)
-        printf("2 won\n");
-    else if (is_terminal(board) == 3)
-        printf("draw");
-    else
-        printf("still playing\n");
+    // if (is_terminal(board) == 1)
+    //     printf("1 won\n");
+    // else if (is_terminal(board) == 2)
+    //     printf("2 won\n");
+    // else if (is_terminal(board) == 3)
+    //     printf("draw");
+    // else
+    //     printf("still playing\n");
+
+    int emty_cells[SIZE + 1];
+    get_all_emty_cells(board, emty_cells);
+    for (int i = 0; i < SIZE + 1; i++)
+    {
+        printf("%d ", emty_cells[i]);
+    }   
 
     return 0;
 }
@@ -96,16 +103,19 @@ int is_terminal(int *board)
 }
 
 void get_all_emty_cells(int *board, int *emty_cells){
-    for (int i = 0; i < SIZE; i++)
+    int counter = 0;
+    for (int i = 1; i < SIZE; i++)
     {
         if (board[i] == 0)
         {
             emty_cells[i] = 1;
+            counter += 1;
         }
         else
         {
             emty_cells[i] = 0;
+            counter += 1;
         }
     }
-    
+    emty_cells[0] = counter;
 }
