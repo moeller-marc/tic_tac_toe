@@ -9,7 +9,7 @@ void print_board(int *board);
 void set_board(int *board);
 int is_terminal(int *board);
 void get_all_emty_cells(int *board, int *emty_cells);
-
+void get_all_moves
 int main(int argc, char const *argv[])
 {
     int board[SIZE];
