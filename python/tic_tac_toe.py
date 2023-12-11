@@ -26,6 +26,23 @@ def main():
             return True
 
         return False
+
+    def who_won(board):
+        for i in range(3):
+            if board[i] == board[i+3] == board[i+6] != 0 and board[i]!= 1:
+                return 2
+            elif board[3*i] == board[3*i+1] == board[3*i+2] != 0 and board[3*i] != 1:
+                return 2
+
+        if board[0] == board[4] == board[8] != 0 and board[4] != 1:
+                return 2
+
+        elif board[2] == board[4] == board[6] != 0 and board[4] != 1:
+                return 2
+
+        return 1
+
+    
     
 
 
