@@ -1,10 +1,10 @@
-
+import pytest
 def main():
     board = [0,0,0,0,0,0,0,0,0]
-    # board = [0,0,0,0,0,0,1,1,1]
-    # board = [0,0,1,0,0,1,0,0,1]
-    # board = [1,0,0,0,1,0,0,0,1]
-    # board = [0,0,1,0,1,0,1,0,0]
+    # board = [0,0,0,0,0,0,2,2,2]
+    # board = [0,0,2,0,0,2,0,0,2]
+    # board = [2,0,0,0,2,0,0,0,2]
+    # board = [0,0,2,0,2,0,2,0,0]
 
     print("Welcome to Tic Tac Toe!")
     print("Player 1 will be X and Player 2 will be O.")
@@ -31,19 +31,31 @@ def main():
 
     def who_won(board) -> int:
         for i in range(3):
-            if board[i] == board[i+3] == board[i+6] != 0 and board[i]!= 1:
+            if board[i] == board[i+3] == board[i+6] != 0 and board[i] == 1:
+                return 1
+            elif board[3*i] == board[3*i+1] == board[3*i+2] != 0 and board[3*i] == 1:
+                return 1
+
+        if board[0] == board[4] == board[8] != 0 and board[4] == 1:
+            return 1
+        elif board[2] == board[4] == board[6] != 0 and board[4] == 1:
+            return 1
+
+
+        for i in range(3):
+            if board[i] == board[i+3] == board[i+6] != 0 and board[i] == 2:
                 return 2
-            elif board[3*i] == board[3*i+1] == board[3*i+2] != 0 and board[3*i] != 1:
+            elif board[3*i] == board[3*i+1] == board[3*i+2] != 0 and board[3*i] == 2:
                 return 2
 
-        if board[0] == board[4] == board[8] != 0 and board[4] != 1:
-                return 2
+        if board[0] == board[4] == board[8] != 0 and board[4] == 2:
+            return 2
+        elif board[2] == board[4] == board[6] != 0 and board[4] == 2:
+            return 2
 
-        elif board[2] == board[4] == board[6] != 0 and board[4] != 1:
-                return 2
+        else:
+            return 0
 
-        return 1
-    
     def get_move(board) -> bool:
         move = input("Enter your move: ")
         move = int(move)
