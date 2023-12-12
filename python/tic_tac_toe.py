@@ -88,9 +88,6 @@ def main():
         print('+---+---+---+')
         print('| ' + board_copy[6] + ' | ' + board_copy[7] + ' | ' + board_copy[8] + ' |')
         print('+---+---+---+')
-            
-
-    print_board(board)  
 
 
 if __name__ == "__main__":
