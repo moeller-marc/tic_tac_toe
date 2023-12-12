@@ -9,11 +9,10 @@ def main():
     print("Welcome to Tic Tac Toe!")
     print("Player 1 will be X and Player 2 will be O.")
     print("To play, enter the row and column of the space you want to play in.")
-    print("The top left space is row 1, column 1.")
-    print("The bottom right space is row 3, column 3.")
+    print("For example, to play in the top left corner, enter 0")
     print("Have fun!")
 
-    def terminal_test(board):
+    def terminal_test(board) -> bool:
         for i in range(3):
             if board[i] == board[i+3] == board[i+6] != 0:
                 return True
@@ -27,7 +26,7 @@ def main():
 
         return False
 
-    def who_won(board):
+    def who_won(board) -> int:
         for i in range(3):
             if board[i] == board[i+3] == board[i+6] != 0 and board[i]!= 1:
                 return 2
@@ -41,9 +40,18 @@ def main():
                 return 2
 
         return 1
+    
+    def get_move(board) -> bool:
+        move = input("Enter your move: ")
+        move = int(move)
+        if board[move] != 0 and board[move] != 2:
+            board[move] = 1
+            return True
+        else: 
+            return False
+    
 
-    
-    
+
 
 
 if __name__ == "__main__":
