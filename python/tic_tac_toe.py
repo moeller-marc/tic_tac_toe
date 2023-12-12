@@ -1,10 +1,12 @@
 import pytest
 def main():
     board = [0,0,0,0,0,0,0,0,0]
-    # board = [0,0,0,0,0,0,2,2,2]
-    # board = [0,0,2,0,0,2,0,0,2]
-    # board = [2,0,0,0,2,0,0,0,2]
-    # board = [0,0,2,0,2,0,2,0,0]
+    # board = [0,0,0,0,0,0,1,1,1]
+    # board = [0,0,1,0,0,1,0,0,1]
+    # board = [1,0,0,0,1,0,0,0,1]
+    # board = [0,0,1,0,1,0,1,0,0]
+
+    # board = [1,0,2,2,1,0,2,2,1]
 
     print("Welcome to Tic Tac Toe!")
     print("Player 1 will be X and Player 2 will be O.")
@@ -67,9 +69,28 @@ def main():
     
 
     def print_board(board):
-        for i in range(1,4):
-            print(board[0*i], board[1*i], board[2*i])
+        board_copy = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
 
+        for i in range(9):
+            if board[i] == 0:
+                board_copy[i] = " "
+            if board[i] == 1:
+                board_copy[i] = "X"
+            elif board[i] == 2:
+                board_copy[i] = "O"
+
+        # the drawing section
+
+        print('+---+---+---+')
+        print('| ' + board_copy[0] + ' | ' + board_copy[1] + ' | ' + board_copy[2] + ' |')
+        print('+---+---+---+')
+        print('| ' + board_copy[3] + ' | ' + board_copy[4] + ' | ' + board_copy[5] + ' |')
+        print('+---+---+---+')
+        print('| ' + board_copy[6] + ' | ' + board_copy[7] + ' | ' + board_copy[8] + ' |')
+        print('+---+---+---+')
+            
+
+    print_board(board)  
 
 
 if __name__ == "__main__":
