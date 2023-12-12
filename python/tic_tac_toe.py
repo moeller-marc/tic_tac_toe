@@ -9,7 +9,7 @@ def main():
     print("Welcome to Tic Tac Toe!")
     print("Player 1 will be X and Player 2 will be O.")
     print("To play, enter the row and column of the space you want to play in.")
-    print("For example, to play in the top left corner, enter 0")
+    print("For example, to play in the top left corner, enter 0, for the bottom right corner, enter 8.")
     print("Have fun!")
 
     def terminal_test(board) -> bool:
@@ -51,6 +51,9 @@ def main():
             return False
     
 
+    def print_board(board):
+        for i in range(1,4):
+            print(board[0*i], board[1*i], board[2*i])
 
 
 
