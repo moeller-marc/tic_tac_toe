@@ -24,7 +24,10 @@ def main():
         elif board[2] == board[4] == board[6] != 0:
             return True
 
-        return False
+        for i in range(9):
+            if board[i] == 0:
+                return False
+        return True 
 
     def who_won(board) -> int:
         for i in range(3):
