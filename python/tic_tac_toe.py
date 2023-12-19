@@ -89,6 +89,41 @@ Have fun!""")
         print('| ' + board_copy[6] + ' | ' + board_copy[7] + ' | ' + board_copy[8] + ' |')
         print('+---+---+---+')
     
+    def minimax(board, alpha, beta, Maximizer):
+        if terminal_test(board):
+            return who_won(board), None
+
+        if Maximizer:
+            maxEval = -100
+            best_move = None
+            temp_board = board.copy()
+
+            for i in range(9):
+                if temp_board[i] == 0:
+                    if temp_board[i] == 0:
+                        temp_board[i] = 1
+                        eval, _ = minimax(temp_board, alpha, beta, False)
+                        maxEval = max(maxEval, eval)
+                        alpha = max(alpha, eval)
+                        best_move = i
+
+            return maxEval, best_move
+
+        else:
+            minEval = 100
+            best_move = None
+            temp_board = board.copy()
+
+            for i in range(9):
+                if temp_board[i] == 0:
+                    temp_board[i] = 2
+                    eval, _ = minimax(temp_board, alpha, beta, True)
+                    minEval = min(minEval, eval)
+                    beta = min(beta, eval)
+                    best_move = i
+        
+            return minEval, best_move
+
 
 
 if __name__ == "__main__":
