@@ -61,7 +61,7 @@ Have fun!""")
     def get_move(board) -> bool:
         move = input("Enter your move: ")
         move = int(move)
-        if board[move] != 0 and board[move] != 2:
+        if board[move] == 0:
             board[move] = 1
             return True
         else: 
@@ -125,6 +125,13 @@ Have fun!""")
             return minEval, best_move
 
 
+    def game():
+        board = [0,0,0,0,0,0,0,0,0]
+        while not terminal_test(board):
+            print_board(board)
+            get_move(board)
+            board[minimax(board, -100, 100, True)[1]] = 2
 
+    game()
 if __name__ == "__main__":
     main()
