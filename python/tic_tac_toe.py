@@ -89,48 +89,59 @@ Have fun!""")
         print('| ' + board_copy[6] + ' | ' + board_copy[7] + ' | ' + board_copy[8] + ' |')
         print('+---+---+---+')
     
-    def minimax(board, alpha, beta, Maximizer):
+    def minimax(board, alpha, beta, maximizingPlayer) -> (int, int):
         if terminal_test(board):
-            return who_won(board), None
-
-        if Maximizer:
+            return who_won(board), None 
+            
+        if maximizingPlayer:
+            board_copy = board.copy()
             maxEval = -100
-            best_move = None
-            temp_board = board.copy()
-
             for i in range(9):
-                if temp_board[i] == 0:
-                    if temp_board[i] == 0:
-                        temp_board[i] = 1
-                        eval, _ = minimax(temp_board, alpha, beta, False)
-                        maxEval = max(maxEval, eval)
-                        alpha = max(alpha, eval)
-                        best_move = i
-
-            return maxEval, best_move
-
+                if board_copy[i] == 0:
+                    board_copy[i] = 1
+                    eval = minimax(board_copy, alpha, beta, False)[0]
+                    if eval > maxEval:
+                        maxEval = eval
+                        bestMove = i
+                    board_copy[i] = 0
+                    alpha = max(alpha, eval)
+                    if beta <= alpha:
+                        break
+            return maxEval, bestMove
         else:
+            board_copy = board.copy()
             minEval = 100
-            best_move = None
-            temp_board = board.copy()
-
             for i in range(9):
-                if temp_board[i] == 0:
-                    temp_board[i] = 2
-                    eval, _ = minimax(temp_board, alpha, beta, True)
-                    minEval = min(minEval, eval)
+                if board_copy[i] == 0:
+                    board_copy[i] = 2
+                    eval = minimax(board_copy, alpha, beta, True)[0]
+                    if eval < minEval:
+                        minEval = eval
+                        bestMove = i
+                    board_copy[i] = 0
                     beta = min(beta, eval)
-                    best_move = i
+                    if beta <= alpha:
+                        break
+            return minEval, bestMove
         
-            return minEval, best_move
 
 
     def game():
         board = [0,0,0,0,0,0,0,0,0]
+        first_move = True 
         while not terminal_test(board):
-            print_board(board)
-            get_move(board)
-            board[minimax(board, -100, 100, True)[1]] = 2
+            if first_move:
+                print_board(board)
+                get_move(board)
+                board[minimax(board, -100, 100, False)[1]] = 2
+                print_board(board)
+                get_move(board)
+                first_move = False
+
+            else:
+                board[minimax(board, -100, 100, False)[1]] = 2
+                print_board(board)
+                get_move(board)
 
     game()
 if __name__ == "__main__":
